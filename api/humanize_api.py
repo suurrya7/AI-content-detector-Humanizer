@@ -3,8 +3,8 @@ from pydantic import BaseModel, Field
 from typing import Optional
 import re
 
-# Import processing helpers from the existing Streamlit page
-from pages.humanize_text import (
+# Import processing helpers from the shared module
+from utils.humanizer_helpers import (
     extract_citations,
     restore_citations,
     minimal_rewriting,
@@ -12,7 +12,6 @@ from pages.humanize_text import (
     count_words,
     count_sentences,
 )
-
 
 DESCRIPTION = (
     """
