@@ -11,15 +11,15 @@ from utils.humanizer_helpers import (
 
 def main():
     st.set_page_config(
-        page_title="AI Text Humanizer",
+        page_title="Academic Wizard",
         layout="wide",
         initial_sidebar_state="collapsed"
     )
 
-    st.title("✍️ AI Text Humanizer")
+    st.title("🧙‍♂️ Academic Wizard")
     st.markdown("---")
 
-    st.subheader("🎛️ Customize Your Humanization Settings")
+    st.subheader("🎛️ Customize Your Settings")
 
     col1, col2 = st.columns(2)
     
@@ -37,7 +37,7 @@ def main():
             help="Higher values add more transitional phrases for better flow"
         )
 
-    st.subheader("📝 Enter Your Text to Humanize")
+    st.subheader("📝 Enter Your Text to Enhance")
     
     input_text = st.text_area(
         "Paste your AI-generated text below:", 
@@ -46,9 +46,9 @@ def main():
         label_visibility="collapsed"
     )
 
-    if st.button("🚀 Humanize Text", type="primary", use_container_width=True):
+    if st.button("🚀 Run Academic Wizard", type="primary", use_container_width=True):
         if not input_text.strip():
-            st.warning("📝 Please enter some text to humanize first.")
+            st.warning("📝 Please enter some text first.")
             return
 
         # Show original stats
@@ -88,13 +88,13 @@ def main():
         new_wc = count_words(final_text)
         new_sc = count_sentences(final_text)
 
-        st.subheader("🎉 Your Humanized Text")
+        st.subheader("🎉 Your Enhanced Text")
 
         st.success(f"✅ Successfully enhanced your text! Added **{new_wc - orig_wc} words** and **{new_sc - orig_sc} sentences** for better flow.")
 
         # Single editable output box that preserves original line breaks and paragraphs
         st.text_area(
-            "Humanized Result",
+            "Enhanced Result",
             final_text,
             height=300,
             label_visibility="collapsed"
@@ -102,9 +102,9 @@ def main():
 
         # Copy to clipboard functionality
         st.download_button(
-            "📋 Download Humanized Text",
+            "📋 Download Enhanced Text",
             data=final_text,
-            file_name="humanized_text.txt",
+            file_name="enhanced_text.txt",
             mime="text/plain",
             use_container_width=True
         )
@@ -129,7 +129,7 @@ def main():
         👆 **Ready to enhance your text?** 
         - Paste your AI-generated content above
         - Adjust the sliders to control enhancement intensity  
-        - Click the 'Humanize Text' button to transform your writing
+        - Click the 'Run Academic Wizard' button to transform your writing
         - Your citations will be automatically protected!
         """)
 

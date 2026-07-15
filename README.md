@@ -1,6 +1,6 @@
-# AI Text Humanizer & Enhancer
+# Academic Wizard
 
-A streamlined web application and API designed for text humanization. Convert AI-generated text into natural, human-like writing while preserving academic integrity and citations.
+A streamlined web application and API designed for academic text rewriting and enhancement. Convert draft or AI-generated text into natural, human-like writing while preserving academic integrity and citations.
 
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -8,7 +8,7 @@ A streamlined web application and API designed for text humanization. Convert AI
 
 ## 🚀 Features
 
-### ✍️ AI Text Humanization
+### ✍️ Academic Enhancement
 - **Smart Citation Protection**: Automatically detects and protects academic citations (e.g. APA format) from being altered.
 - **Rule-based Enhancements**: Expands contractions, replaces repetitive words with context-appropriate synonyms, and inserts professional transitions.
 - **Customizable Intensity**: User-controlled sliders for synonym replacement rate and transition frequency.

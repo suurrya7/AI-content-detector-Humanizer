@@ -15,32 +15,32 @@ from utils.humanizer_helpers import (
 
 DESCRIPTION = (
     """
-AI Text Humanizer API
+Academic Wizard API
 
-This API provides server-side access to the project's text humanization pipeline. It accepts
-AI-generated text and returns an enhanced, more natural, human-like version while preserving
-academic citations and structure. The endpoint exposes options to control synonym replacement
+This API provides server-side access to the text rewriting and enhancement pipeline. It accepts
+AI-generated or draft text and returns an enhanced, more natural, academic version while preserving
+citations and structure. The endpoint exposes options to control synonym replacement
 intensity and the frequency of added academic transitions.
 """
 )
 
 tags_metadata = [
     {
-        "name": "humanize",
-        "description": "Endpoints for transforming AI-generated text into human-like prose.",
+        "name": "enhance",
+        "description": "Endpoints for transforming draft/AI text into refined academic prose.",
     }
 ]
 
 app = FastAPI(
-    title="AI Text Humanizer API",
+    title="Academic Wizard API",
     version="0.2",
     description=DESCRIPTION,
     openapi_tags=tags_metadata,
 )
 
 
-class HumanizeRequest(BaseModel):
-    text: str = Field(..., description="The input text to humanize. Must be non-empty.")
+class EnhanceRequest(BaseModel):
+    text: str = Field(..., description="The input text to enhance. Must be non-empty.")
     p_syn: Optional[float] = Field(0.2, ge=0.0, le=1.0, description="Synonym replacement intensity (0.0-1.0)")
     p_trans: Optional[float] = Field(0.2, ge=0.0, le=1.0, description="Academic transition insertion probability (0.0-1.0)")
     preserve_linebreaks: Optional[bool] = Field(True, description="Whether to preserve original line breaks")
@@ -56,8 +56,8 @@ class HumanizeRequest(BaseModel):
         }
 
 
-class HumanizeResponse(BaseModel):
-    humanized_text: str = Field(..., description="The transformed human-like text result")
+class EnhanceResponse(BaseModel):
+    enhanced_text: str = Field(..., description="The transformed academic text result")
     orig_word_count: int
     orig_sentence_count: int
     new_word_count: int
@@ -68,7 +68,7 @@ class HumanizeResponse(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "humanized_text": "Moreover, Recent studies (Smith et al., 2020) show promising results. It cannot be ignored.",
+                "enhanced_text": "Moreover, Recent studies (Smith et al., 2020) show promising results. It cannot be ignored.",
                 "orig_word_count": 11,
                 "orig_sentence_count": 2,
                 "new_word_count": 13,
@@ -79,7 +79,7 @@ class HumanizeResponse(BaseModel):
         }
 
 
-@app.get("/health", tags=["humanize"], summary="Health check")
+@app.get("/health", tags=["enhance"], summary="Health check")
 def health():
     """Returns OK when the service is healthy.
 
@@ -89,14 +89,14 @@ def health():
 
 
 @app.post(
-    "/humanize",
-    response_model=HumanizeResponse,
-    tags=["humanize"],
-    summary="Humanize input text",
+    "/enhance",
+    response_model=EnhanceResponse,
+    tags=["enhance"],
+    summary="Enhance input text academically",
     response_description="The transformed text and basic metrics",
 )
-def humanize(req: HumanizeRequest):
-    """Transform AI-generated text into human-like prose.
+def enhance(req: EnhanceRequest):
+    """Transform draft or AI-generated text into refined academic prose.
 
     The endpoint will:
     - Preserve and protect citation strings (e.g., APA style) while rewriting
@@ -135,7 +135,7 @@ def humanize(req: HumanizeRequest):
     new_sc = count_sentences(final_text)
 
     return {
-        "humanized_text": final_text,
+        "enhanced_text": final_text,
         "orig_word_count": orig_wc,
         "orig_sentence_count": orig_sc,
         "new_word_count": new_wc,
