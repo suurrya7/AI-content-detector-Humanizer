@@ -124,14 +124,5 @@ def main():
         with col4:
             st.metric("Final Sentence Count", new_sc)
 
-    else:
-        st.info("""
-        👆 **Ready to enhance your text?** 
-        - Paste your AI-generated content above
-        - Adjust the sliders to control enhancement intensity  
-        - Click the 'Run Academic Wizard' button to transform your writing
-        - Your citations will be automatically protected!
-        """)
-
 if __name__ == "__main__":
     main()
